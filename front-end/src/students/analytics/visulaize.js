@@ -136,7 +136,6 @@ function Visualization() {
     return (
         <>
             <Navbarfun />
-            <h1>Visualization</h1>
             <div>
                 <label htmlFor="semSelect">Select Semester:</label>
                 <select

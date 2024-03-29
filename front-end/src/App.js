@@ -17,6 +17,7 @@ import Staffviewpersonal from './teacher/view/staffviewpersonal';
 import Staffviewacademic from './teacher/view/staffviewacademic';
 import Staffviewother from './teacher/view/staffviewother';
 import Teacheranalytics from './teacher/analytics/teacheranalytics';
+import Data from './PDF/Data';
 function App() {
   return (
     <BrowserRouter>
@@ -38,6 +39,7 @@ function App() {
         <Route path="/teacher/view/academicdata" element={<Staffviewacademic />} />
         <Route path="/teacher/view/otherdata" element={<Staffviewother />} />
         <Route path="/teacher/analytics" element={<Teacheranalytics/>} />
+        <Route path="/pdf" element={<Data/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

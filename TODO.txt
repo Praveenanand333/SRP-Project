@@ -1,3 +1,5 @@
-Teachers edit page and HOD page
+Different navbar for teacher and HOD
+Teachers verify
+HOD page
 Analytics-2
 Improve CSS

@@ -10,6 +10,7 @@ function Staffviewacademic(){
     const [marks, setMarks] = useState(null);
     const  [sem,setsem]=useState(null);
     const [gpa,setgpa]=useState(null);
+    const [verifiedstatus,setverifiedstatus]=useState(false);
     const handleInputChangesem = (event) => {
         setsem(event.target.value);
        
@@ -47,8 +48,26 @@ function Staffviewacademic(){
     
         setgpa(response.data);
        })
+       .catch(err => {
+        console.log(err);
+        })
+
+       axios.get(`http://localhost:5000/getverifystatus/${rollNumber}/${sem}`)
+       .then(response => {
+        if(response.data.allVerified==1){
+            setverifiedstatus(true);
+        }
+        else{
+            setverifiedstatus(false);
+        }
+       
+       })
+       .catch(err => {
+        console.log(err);
+        })
         
     }
+
     useEffect(() => {
         axios.get('http://localhost:5000/session')
         .then(response => {
@@ -63,6 +82,27 @@ function Staffviewacademic(){
         })
         
     },[sem])
+   
+    const Approve=() => {
+        axios.get(`http://localhost:5000/approve/${rollNumber}/${sem}`)
+        .then(response => {
+            setverifiedstatus(true);
+            alert("Marks are approved")
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+    const unApprove=()=>{
+        axios.get(`http://localhost:5000/unapprove/${rollNumber}/${sem}`)
+        .then(response => {
+            setverifiedstatus(false);
+            alert("Marks are unapproved")
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
 
     return(
         <>
@@ -94,6 +134,15 @@ function Staffviewacademic(){
             </select>
             <p>Semester: {sem}</p>
         </div>
+        { marks && verifiedstatus && <div>
+            <button className='delete-btn'onClick={unApprove}>Unapprove</button>
+            <p>Marks are verified</p>
+            </div>}
+
+            {marks && !verifiedstatus && <div>
+                <button className='add-btn'onClick={Approve}>Approve</button>
+                <p>Marks are not verified</p>
+                </div>}
         {marks &&  <div>
       <h2>Marks Table</h2>
       <table className='marks-table'>

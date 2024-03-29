@@ -142,7 +142,6 @@ function Teacheranalytics() {
     return (
         <>
             <Navbarfun />
-            <h1>Visualization</h1>
             
         <input
                 type="number"

@@ -578,6 +578,82 @@ app.get('/getgpa/:rollNumber', (req, res) => {
     res.json(results);
   }); 
 })
+app.get('/getverifystatus/:rollNumber/:sem', (req, res) => {
+  const rollNumber = req.params.rollNumber;
+  const sem = req.params.sem;
+
+  // Query to fetch verify_status for the given rollNumber and semester
+  const query = `
+    SELECT 
+      IF(COUNT(*) = SUM(verified_status), TRUE, FALSE) AS all_verified 
+    FROM 
+      marks 
+    WHERE 
+      RollNumber = ? AND 
+      Semester = ?
+  `;
+
+  // Execute the query
+  db.query(query, [rollNumber, sem], (error, results) => {
+    if (error) {
+      console.error('Error executing MySQL query: ' + error.stack);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+
+    // Extracting the result
+    const allVerified = results[0].all_verified;
+    console.log(allVerified);
+    // Sending the response
+    res.json({ allVerified });
+  });
+});
+
+app.get('/approve/:rollNumber/:sem', (req, res) => {
+  const rollNumber = req.params.rollNumber;
+  const sem = req.params.sem;
+  const query = `
+    UPDATE marks 
+    SET verified_status = TRUE 
+    WHERE RollNumber = ? AND Semester = ?
+  `;
+  db.query(query, [rollNumber, sem], (error, results) => {
+    if (error) {
+      console.error('Error executing MySQL query: ' + error.stack);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    if (results.affectedRows === 0) {
+      res.status(404).json({ error: 'No matching record found' });
+      return;
+    }
+    res.json({ message: 'Verification status updated successfully' });
+  });
+});
+
+app.get('/unapprove/:rollNumber/:sem', (req, res) => {
+  const rollNumber = req.params.rollNumber;
+  const sem = req.params.sem;
+  const query = `
+    UPDATE marks 
+    SET verified_status = FALSE 
+    WHERE RollNumber = ? AND Semester = ?
+  `;
+  db.query(query, [rollNumber, sem], (error, results) => {
+    if (error) {
+      console.error('Error executing MySQL query: ' + error.stack);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    if (results.affectedRows === 0) {
+      res.status(404).json({ error: 'No matching record found' });
+      return;
+    }
+    res.json({ message: 'Verification status updated successfully' });
+  });
+});
+
+
 app.get('/logout', (req, res) => {
   const username = req.session.username;
     req.session.destroy((err) => {

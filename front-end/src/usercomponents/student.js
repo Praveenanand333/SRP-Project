@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbarfun from './Navbarfun';
+import PDFData from '../PDF/PDFGenerator';
+import '../CSS/view.css'
 function Student() {
     const [username, setUsername] = useState('');
     axios.defaults.withCredentials = true; 
@@ -35,6 +37,8 @@ function Student() {
        <Navbarfun/>
             <h1>Student</h1>
             <p>Welcome, {username}</p>
+            <PDFData/>
+
 
         </>
     );
