@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2024 at 06:48 AM
+-- Generation Time: Mar 30, 2024 at 05:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -64,6 +64,30 @@ CREATE TABLE `exams_attended` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `gpa`
+--
+
+CREATE TABLE `gpa` (
+  `rollnumber` int(11) NOT NULL,
+  `gpa` float DEFAULT NULL,
+  `semester` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `gpa`
+--
+
+INSERT INTO `gpa` (`rollnumber`, `gpa`, `semester`) VALUES
+(111, 8.3, 1),
+(111, 7.5, 2),
+(111, 9.1, 3),
+(111, 6.8, 4),
+(111, 8.7, 5),
+(111, 7.2, 6);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `internship`
 --
 
@@ -97,23 +121,56 @@ CREATE TABLE `marks` (
   `SubjectID` varchar(50) NOT NULL,
   `Semester` int(11) NOT NULL,
   `MarksObtained` int(11) DEFAULT NULL,
-  `Grade` varchar(5) DEFAULT NULL
+  `Grade` varchar(5) DEFAULT NULL,
+  `verified_status` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `marks`
 --
 
-INSERT INTO `marks` (`RollNumber`, `SubjectID`, `Semester`, `MarksObtained`, `Grade`) VALUES
-(111, 'EC5693', 6, 85, 'A+'),
-(111, 'IT5014', 6, 75, 'A'),
-(111, 'IT5020', 6, 92, 'O'),
-(111, 'IT5601', 6, 68, 'B'),
-(111, 'IT5602', 6, 80, 'A+'),
-(111, 'IT5603', 6, 55, 'B-'),
-(111, 'IT5611', 6, 72, 'B'),
-(111, 'IT5612', 6, 88, 'A'),
-(111, 'IT5613', 6, 60, 'C');
+INSERT INTO `marks` (`RollNumber`, `SubjectID`, `Semester`, `MarksObtained`, `Grade`, `verified_status`) VALUES
+(111, 'BS5161', 1, 89, 'A+', 1),
+(111, 'CY5151', 1, 71, 'A', 1),
+(111, 'E5251', 4, 88, 'A+', 0),
+(111, 'EC5693', 6, 85, 'A+', 0),
+(111, 'EE5251', 2, 100, 'O', 0),
+(111, 'EE5261', 2, 63, 'B+', 0),
+(111, 'GE5151', 2, 67, 'B+', 0),
+(111, 'GE5153', 1, 80, 'A+', 1),
+(111, 'GE5161', 1, 84, 'A+', 1),
+(111, 'HS5151', 1, 82, 'A+', 1),
+(111, 'HS5251', 2, 98, 'O', 0),
+(111, 'IT5014', 6, 75, 'A', 0),
+(111, 'IT5020', 6, 92, 'O', 0),
+(111, 'IT5201', 2, 86, 'A+', 0),
+(111, 'IT5211', 2, 86, 'A+', 0),
+(111, 'IT5301', 3, 92, 'O', 0),
+(111, 'IT5302', 3, 63, 'B+', 0),
+(111, 'IT5311', 3, 94, 'O', 0),
+(111, 'IT5312', 3, 77, 'A', 0),
+(111, 'IT5351', 3, 54, 'B', 0),
+(111, 'IT5352', 3, 91, 'O', 0),
+(111, 'IT5402', 4, 97, 'O', 0),
+(111, 'IT5403', 4, 96, 'O', 0),
+(111, 'IT5411', 4, 91, 'O', 0),
+(111, 'IT5412', 4, 66, 'B+', 0),
+(111, 'IT5501', 5, 86, 'A+', 0),
+(111, 'IT5502', 5, 58, 'B', 0),
+(111, 'IT5511', 5, 86, 'A+', 0),
+(111, 'IT5512', 5, 55, 'B', 0),
+(111, 'IT5513', 5, 67, 'B+', 0),
+(111, 'IT5551', 5, 69, 'B+', 0),
+(111, 'IT5601', 6, 68, 'B', 0),
+(111, 'IT5602', 6, 80, 'A+', 0),
+(111, 'IT5603', 6, 55, 'B', 0),
+(111, 'IT5611', 6, 72, 'B', 0),
+(111, 'IT5612', 6, 88, 'A', 0),
+(111, 'IT5613', 6, 60, 'B+', 0),
+(111, 'MA5158', 1, 58, 'B', 1),
+(111, 'MA5252', 2, 72, 'A', 0),
+(111, 'MA5302', 3, 93, 'O', 0),
+(111, 'PH5151', 1, 95, 'O', 1);
 
 -- --------------------------------------------------------
 
@@ -197,7 +254,7 @@ CREATE TABLE `sports` (
 --
 
 INSERT INTO `sports` (`id`, `roll_number`, `event_name`, `award`) VALUES
-(2, 111, 'Marathon', 'First');
+(4, 111, 'abc', 'sample');
 
 -- --------------------------------------------------------
 
@@ -287,15 +344,49 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`SubjectID`, `SubjectName`, `Type`, `Semester`, `credits`) VALUES
-('EC5693', 'WIRELESS TECHNOLOGIES', 'open-elective', 6, NULL),
-('IT5014', 'C# AND .NET PROGRAMMING', 'prof-elective', 6, NULL),
-('IT5020', 'SOCIAL NETWORK ANALYSIS', 'prof-elective', 6, NULL),
-('IT5601', 'EMBEDDED SYSTEMS AND INTERNET OF THINGS', 'core', 6, NULL),
-('IT5602', 'DATA SCIENCE AND ANALYTICS', 'core', 6, NULL),
-('IT5603', 'DISTRIBUTED AND CLOUD COMPUTING', 'core', 6, NULL),
-('IT5611', 'EMBEDDED SYSTEMS AND INTERNET OF THINGS LABORATORY', 'core', 6, NULL),
-('IT5612', 'DATA ANALYTICS AND CLOUD COMPUTING LABORATORY', 'core', 6, NULL),
-('IT5613', 'SOCIALLY RELEVANT PROJECT LABORATORY', 'core', 6, NULL);
+('BS5161', 'Basic Sciences Laboratory', 'core', 1, 2),
+('CY5151', 'Engineering Chemistry', 'core', 1, 3),
+('E5251', 'Environmental Sciences', 'core', 4, 3),
+('EC5693', 'WIRELESS TECHNOLOGIES', 'open-elective', 6, 3),
+('EE5251', 'Basics of Electrical and Electronics Engineering', 'core', 2, 3),
+('EE5261', 'Electrical and Electronics Engineering Laboratory', 'core', 2, 2),
+('GE5151', 'Engineering Graphics', 'core', 2, 3),
+('GE5153', 'Problem Solving and Python Programming', 'core', 1, 3),
+('GE5161', 'Problem Solving and Python Programming Laboratory', 'core', 1, 2),
+('HS5151', 'Technical English', 'core', 1, 4),
+('HS5251', 'Professional Communication', 'core', 2, 4),
+('IT5014', 'C# AND .NET PROGRAMMING', 'prof-elective', 6, 3),
+('IT5020', 'SOCIAL NETWORK ANALYSIS', 'prof-elective', 6, 3),
+('IT5201', 'Information Technology Essentials', 'core', 2, 3),
+('IT5211', 'Information Technology Essentials Laboratory', 'core', 2, 2),
+('IT5301', 'Digital Logic and Design', 'core', 3, 3),
+('IT5302', 'Software Engineering', 'core', 3, 3),
+('IT5311', 'Programming and Data Structures Laboratory', 'core', 3, 2),
+('IT5312', 'Database Management Systems Laboratory', 'core', 3, 2),
+('IT5351', 'Database Management Systems', 'core', 3, 3),
+('IT5352', 'Programming and Data Structures', 'core', 3, 3),
+('IT5401', 'Object Oriented Programming and Advanced Data Stru', 'core', 4, 3),
+('IT5402', 'Design and Analysis of Algorithms', 'core', 4, 3),
+('IT5403', 'Operating Systems', 'core', 4, 3),
+('IT5411', 'Operating Systems Laboratory', 'core', 4, 2),
+('IT5412', 'Advanced Data Structures Laboratory', 'core', 4, 2),
+('IT5451', 'Computer Architecture', 'core', 5, 3),
+('IT5501', 'Web Technologies', 'core', 5, 3),
+('IT5502', 'Compiler Engineering', 'core', 5, 3),
+('IT5511', 'Computer Networks Laboratory', 'core', 5, 2),
+('IT5512', 'Web Technologies Laboratory', 'core', 5, 2),
+('IT5513', 'Summer Internship /Summer Project', 'core', 5, 2),
+('IT5551', 'Computer Networks', 'core', 5, 3),
+('IT5601', 'EMBEDDED SYSTEMS AND INTERNET OF THINGS', 'core', 6, 3),
+('IT5602', 'DATA SCIENCE AND ANALYTICS', 'core', 6, 3),
+('IT5603', 'DISTRIBUTED AND CLOUD COMPUTING', 'core', 6, 3),
+('IT5611', 'EMBEDDED SYSTEMS AND INTERNET OF THINGS LABORATORY', 'core', 6, 3),
+('IT5612', 'DATA ANALYTICS AND CLOUD COMPUTING LABORATORY', 'core', 6, 3),
+('IT5613', 'SOCIALLY RELEVANT PROJECT LABORATORY', 'core', 6, 3),
+('MA5158', 'Engineering Mathematics I', 'core', 1, 4),
+('MA5252', 'Engineering Mathematics II', 'core', 2, 4),
+('MA5302', 'Discrete Mathematics', 'core', 3, 4),
+('PH5151', 'Engineering Physics', 'core', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -373,7 +464,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
 (7, 111, '111', 'student'),
-(8, 222, '222', 'student');
+(8, 222, '222', 'student'),
+(9, 333, '333', 'teacher');
 
 --
 -- Indexes for dumped tables
@@ -393,6 +485,12 @@ ALTER TABLE `events`
 ALTER TABLE `exams_attended`
   ADD PRIMARY KEY (`id`),
   ADD KEY `roll_number` (`roll_number`);
+
+--
+-- Indexes for table `gpa`
+--
+ALTER TABLE `gpa`
+  ADD PRIMARY KEY (`rollnumber`,`semester`);
 
 --
 -- Indexes for table `internship`
@@ -530,13 +628,13 @@ ALTER TABLE `scholarship`
 -- AUTO_INCREMENT for table `sports`
 --
 ALTER TABLE `sports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
