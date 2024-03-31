@@ -57,13 +57,12 @@ function ViewStudentAcademic(){
     return(
         <>
         <Navbarfun/>
-        <h1>ViewStudentAcademic</h1>
         {basicacademic &&<div className='basic-detail'>
             <p>Current Semester : {basicacademic.CurrentSemester}</p>
             <p>Tenth Marks : {basicacademic.TenthMarks}</p>
             <p>Higher Secondary Marks : {basicacademic.HigherSecondaryMarks}</p>
             </div>}
-            <div>
+            <div className='sem-select'>
             <label htmlFor="semSelect">Select Semester:</label>
             <select
                 id="semSelect"

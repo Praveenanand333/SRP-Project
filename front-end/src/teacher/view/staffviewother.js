@@ -140,17 +140,18 @@ function Staffviewother(){
                 value={rollNumber}
                 onChange={handleInputChange}
             />
-            <button onClick={fetchStudentDetails}>Search</button>
-        {internships && internships.map((internship, index) => (
+            <button className='add-btn' onClick={fetchStudentDetails}>Search</button>
+            {internships && internships.map((internship, index) => (
     <div className='view-form' key={index}>
         <h2>Internship Details {index + 1}</h2>
+       
         <p className='view-field'><strong>Roll Number:</strong> {internship.roll_number}</p>
         <p className='view-field'><strong>Employer:</strong> {internship.employer_name}</p>
         <p className='view-field'><strong>On/Off campus:</strong> {internship.on_off_campus}</p>
         <p className='view-field'><strong>CTC:</strong> {internship.ctc}</p>
-        <p className='view-field'><strong>Internship Duration:</strong> {internship.internship_duration}</p>
-        <p className='view-field'><strong>Internship StartDate:</strong> {internship.internship_start_date}</p>
-        <p className='view-field'><strong>Internship EndDate:</strong> {internship.internship_end_date}</p>
+        <p className='view-field'><strong>Internship Duration:</strong> {internship.InternshipDuration}</p>
+        <p className='view-field'><strong>Internship StartDate:</strong> {new Date(internship.InternshipStartDate).toLocaleDateString()}</p>
+        <p className='view-field'><strong>Internship EndDate:</strong> {new Date(internship.InternshipEndDate).toLocaleDateString()}</p>
         <p className='view-field'><strong>Product/Service Based :</strong> {internship.product_service_based}</p>
         
     </div>

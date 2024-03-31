@@ -251,9 +251,9 @@ function Data(){
            <div className="Academic-details">
            {basicacademic && 
         <div className='basic-detail'>
-          <p>Current Semester : {basicacademic.CurrentSemester}</p>
-          <p>Tenth Marks : {basicacademic.TenthMarks}</p>
-          <p>Higher Secondary Marks : {basicacademic.HigherSecondaryMarks}</p>
+          <p><strong>Current Semester :</strong> {basicacademic.CurrentSemester}</p>
+          <p><strong>Tenth Marks : </strong>{basicacademic.TenthMarks}</p>
+          <p><strong>Higher Secondary Marks :</strong> {basicacademic.HigherSecondaryMarks}</p>
         </div>
       }
       <div>
@@ -298,13 +298,14 @@ function Data(){
            {internships && internships.map((internship, index) => (
     <div className='view-formpdf' key={index}>
         <h2>Internship Details {index + 1}</h2>
+       
         <p className='view-fieldpdf'><strong>Roll Number:</strong> {internship.roll_number}</p>
         <p className='view-fieldpdf'><strong>Employer:</strong> {internship.employer_name}</p>
         <p className='view-fieldpdf'><strong>On/Off campus:</strong> {internship.on_off_campus}</p>
         <p className='view-fieldpdf'><strong>CTC:</strong> {internship.ctc}</p>
-        <p className='view-fieldpdf'><strong>Internship Duration:</strong> {internship.internship_duration}</p>
-        <p className='view-fieldpdf'><strong>Internship StartDate:</strong> {internship.internship_start_date}</p>
-        <p className='view-fieldpdf'><strong>Internship EndDate:</strong> {internship.internship_end_date}</p>
+        <p className='view-fieldpdf'><strong>Internship Duration:</strong> {internship.InternshipDuration}</p>
+        <p className='view-fieldpdf'><strong>Internship StartDate:</strong> {new Date(internship.InternshipStartDate).toLocaleDateString()}</p>
+        <p className='view-fieldpdf'><strong>Internship EndDate:</strong> {new Date(internship.InternshipEndDate).toLocaleDateString()}</p>
         <p className='view-fieldpdf'><strong>Product/Service Based :</strong> {internship.product_service_based}</p>
         
     </div>

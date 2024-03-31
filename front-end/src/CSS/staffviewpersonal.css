@@ -1,0 +1,56 @@
+Staff View Personal Styles
+.staffviewpersonal {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Input Styles */
+  .staffviewpersonal input[type="number"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  /* Button Styles */
+  .staffviewpersonal .add-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .staffviewpersonal .add-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Error Message Styles */
+  .staffviewpersonal p.error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Teacher Academic Container Styles */
+  .teacheracademiccont {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Teacher View Field Styles */
+  .teacher-view-field {
+    margin-bottom: 10px;
+  }
+  
+
+  

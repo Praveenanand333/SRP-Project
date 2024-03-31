@@ -107,18 +107,18 @@ function Staffviewacademic(){
     return(
         <>
         <Navbarfun/>
-        <h1>ViewStudentAcademic</h1>
+     
         <input
                 type="number"
                 placeholder="Enter Roll Number"
                 value={rollNumber}
                 onChange={handleInputChange}
             />
-            <button onClick={fetchdata}>Search</button>
+            <button className='add-btn' onClick={fetchdata}>Search</button>
         {basicacademic &&<div className='basic-detail'>
-            <p>Current Semester : {basicacademic.CurrentSemester}</p>
-            <p>Tenth Marks : {basicacademic.TenthMarks}</p>
-            <p>Higher Secondary Marks : {basicacademic.HigherSecondaryMarks}</p>
+            <p><strong>Current Semester : </strong>{basicacademic.CurrentSemester}</p>
+            <p><strong>Tenth Marks : </strong>{basicacademic.TenthMarks}</p>
+            <p><strong>Higher Secondary Marks : </strong>{basicacademic.HigherSecondaryMarks}</p>
             </div>}
             <div>
             <label htmlFor="semSelect">Select Semester:</label>
@@ -132,7 +132,7 @@ function Staffviewacademic(){
                     <option key={num + 1} value={num + 1}>{num + 1}</option>
                 ))}
             </select>
-            <p>Semester: {sem}</p>
+          
         </div>
         { marks && verifiedstatus && <div>
             <button className='delete-btn'onClick={unApprove}>Unapprove</button>
@@ -144,7 +144,7 @@ function Staffviewacademic(){
                 <p>Marks are not verified</p>
                 </div>}
         {marks &&  <div>
-      <h2>Marks Table</h2>
+      <center><h2>Marks Table</h2></center>
       <table className='marks-table'>
         <thead>
           <tr>

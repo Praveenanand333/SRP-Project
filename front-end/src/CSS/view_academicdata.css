@@ -10,6 +10,8 @@
   /* Basic Detail Styles */
   .basic-detail {
     margin-bottom: 20px;
+    margin-left: 1%;
+    margin-top: 1%;
   }
   
   /* Select Styles */
@@ -31,7 +33,7 @@
   }
   
   .marks-table th {
-    background-color: #f2f2f2;
+    background-color: #097489 ;
   }
   
   /* Semester GPA Styles */
@@ -42,7 +44,7 @@
   
   /* Hover Effect for Table Rows */
   .marks-table tbody tr:hover {
-    background-color: #f5f5f5;
+    background-color: #e1dede;
     transition: background-color 0.3s ease;
   }
   
@@ -62,3 +64,10 @@
     animation: fadeIn 0.5s ease;
   }
   
+  .marks-table th {
+    background-color: #cfcbcbcb;
+    font-weight: bold;
+  }
+  .sem-select{
+    margin: 1%;
+  }
