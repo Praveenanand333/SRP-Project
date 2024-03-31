@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import  '../CSS/pdf.css'
 function Data(){
     const [studentDetails, setStudentDetails] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
@@ -217,29 +218,30 @@ function Data(){
         <div>
            <center> <h2>Student Details Report</h2></center>
            <div className="persoanl-details">
-           <div className='view-container'>
-                <h2 className='view-heading'>Student Personal Details</h2>
+           <div className='view-containerpdf'>
+                <h2 className='view-headingpdf'>Student Personal Details</h2>
                 {errorMessage && <p>{errorMessage}</p>}
                 {studentDetails && (
                     <>
-                    <div className='img-container'>
-                    <img className='prof-pic' src={`http://localhost:5000/getImage/${studentDetails.RollNumber}`} alt='img'/>
+                    <div className='img-containerpdf'>
+                    <img className='prof-picpdf' src={`http://localhost:5000/getImage/${studentDetails.RollNumber}`} alt='img'/>
                     </div>
                    
-                    <div className='view-form1'>
+                    <div className='view-formpdf'>
                         
                         
-                        <p className='view-field'><strong>Roll Number:</strong> {studentDetails.RollNumber}</p>
-                        <p className='view-field'><strong>Date of Birth:</strong> {studentDetails.DateOfBirth}</p>
-                        <p className='view-field'><strong>Address:</strong> {studentDetails.Address}</p>
-                        <p className='view-field'><strong>Phone:</strong> {studentDetails.Phone}</p>
+                        <p className='view-fieldpdf'><strong>Roll Number:</strong> {studentDetails.RollNumber}</p>
+                        <p className='view-fieldpdf'><strong>Date of Birth:</strong> {studentDetails.DateOfBirth}</p>
+                        <p className='view-fieldpdf'><strong>Address:</strong> {studentDetails.Address}</p>
+                        <p className='view-fieldpdf'><strong>Phone:</strong> {studentDetails.Phone}</p>
                      
-                        <p className='view-field'><strong>Sex:</strong> {studentDetails.Sex}</p>
-                        <p className='view-field'><strong>Blood Group:</strong> {studentDetails.Blood_Group}</p>
-                        <p className='view-field'><strong>Father's Name:</strong> {studentDetails.FatherName}</p>
-                        <p className='view-field'><strong>Mother's Name:</strong> {studentDetails.Mothername}</p>
-                        <p className='view-field'><strong>Father's Occupation:</strong> {studentDetails.Fatheroccupation}</p>
-                        <p className='view-field'><strong>Mother's Occupation:</strong> {studentDetails.Motheroccupation}</p>
+                        <p className='view-fieldpdf'><strong>Sex:</strong> {studentDetails.Sex}</p>
+                        <p className='view-fieldpdf'><strong>Sex:</strong> {studentDetails.Sex}</p>
+                        <p className='view-fieldpdf'><strong>Blood Group:</strong> {studentDetails.Blood_Group}</p>
+                        <p className='view-fieldpdf'><strong>Father's Name:</strong> {studentDetails.FatherName}</p>
+                        <p className='view-fieldpdf'><strong>Mother's Name:</strong> {studentDetails.Mothername}</p>
+                        <p className='view-fieldpdf'><strong>Father's Occupation:</strong> {studentDetails.Fatheroccupation}</p>
+                        <p className='view-fieldpdf'><strong>Mother's Occupation:</strong> {studentDetails.Motheroccupation}</p>
                     </div>
                     </>
                 )}
@@ -257,7 +259,7 @@ function Data(){
       <div>
         <h2>Marks Table</h2>
         {marksData.length > 0 && 
-          <table className='marks-table'>
+          <table className='marks-tablepdf'>
             <thead>
               <tr>
                 <th>Semester</th>
@@ -281,7 +283,7 @@ function Data(){
           </table>
         }
         {Object.keys(gpaData).length > 0 && 
-          <div className='gpa-show'>
+          <div className='gpa-showpdf'>
             <h2>Semester GPA</h2>
             {gpaData.map((gpa, sem) => (
               <p key={sem}>Semester {sem + 1} GPA: {gpa.gpa}</p>
@@ -294,69 +296,69 @@ function Data(){
            <div className="other-details">
 
            {internships && internships.map((internship, index) => (
-    <div className='view-form1' key={index}>
+    <div className='view-formpdf' key={index}>
         <h2>Internship Details {index + 1}</h2>
-        <p className='view-field'><strong>Roll Number:</strong> {internship.roll_number}</p>
-        <p className='view-field'><strong>Employer:</strong> {internship.employer_name}</p>
-        <p className='view-field'><strong>On/Off campus:</strong> {internship.on_off_campus}</p>
-        <p className='view-field'><strong>CTC:</strong> {internship.ctc}</p>
-        <p className='view-field'><strong>Internship Duration:</strong> {internship.internship_duration}</p>
-        <p className='view-field'><strong>Internship StartDate:</strong> {internship.internship_start_date}</p>
-        <p className='view-field'><strong>Internship EndDate:</strong> {internship.internship_end_date}</p>
-        <p className='view-field'><strong>Product/Service Based :</strong> {internship.product_service_based}</p>
+        <p className='view-fieldpdf'><strong>Roll Number:</strong> {internship.roll_number}</p>
+        <p className='view-fieldpdf'><strong>Employer:</strong> {internship.employer_name}</p>
+        <p className='view-fieldpdf'><strong>On/Off campus:</strong> {internship.on_off_campus}</p>
+        <p className='view-fieldpdf'><strong>CTC:</strong> {internship.ctc}</p>
+        <p className='view-fieldpdf'><strong>Internship Duration:</strong> {internship.internship_duration}</p>
+        <p className='view-fieldpdf'><strong>Internship StartDate:</strong> {internship.internship_start_date}</p>
+        <p className='view-fieldpdf'><strong>Internship EndDate:</strong> {internship.internship_end_date}</p>
+        <p className='view-fieldpdf'><strong>Product/Service Based :</strong> {internship.product_service_based}</p>
         
     </div>
 ))}
         {!Scholarships&&<h3 className='nodatamsg'>No Scholarshp details found</h3>}
 {Scholarships && Scholarships.map((Scholarship, index) => (
-    <div className='view-form1' key={index}>
+    <div className='view-formpdfpdf' key={index}>
         <h2>Scholarship Details {index + 1}</h2>
-        <p className='view-field'><strong>Scholarship Provider:</strong> {Scholarship.ScholarshipProvider}</p>
-        <p className='view-field'><strong>Amount:</strong> {Scholarship.amount}</p>
+        <p className='view-fieldpdf'><strong>Scholarship Provider:</strong> {Scholarship.ScholarshipProvider}</p>
+        <p className='view-fieldpdf'><strong>Amount:</strong> {Scholarship.amount}</p>
    
     </div>
 ))}
 
 {projects && projects.map((project, index) => (
-    <div className='view-form1' key={index}>
+    <div className='view-formpdf' key={index}>
         <h2>Project Details {index + 1}</h2>
-        <p className='view-field'><strong>Project Name:</strong> {project.title}</p>
-        <p className='view-field'><strong>Guide:</strong> {project.guide}</p>
-        <p className='view-field'><strong>Description:</strong> {project.project_desc}</p>
+        <p className='view-fieldpdf'><strong>Project Name:</strong> {project.title}</p>
+        <p className='view-fieldpdf'><strong>Guide:</strong> {project.guide}</p>
+        <p className='view-fieldpdf'><strong>Description:</strong> {project.project_desc}</p>
    
     </div>
 ))}
             {!projects && <h3 className='nodatamsg'>No Project details found</h3>}
 
             {sports && sports.map((sport, index) => (
-    <div className='view-form1' key={index}>
+    <div className='view-formpdfpdf' key={index}>
         <h2>Sports Details {index + 1}</h2>
-        <p className='view-field'><strong>Event Name:</strong> {sport.event_name}</p>
-        <p className='view-field'><strong>Award:</strong> {sport.award}</p>
+        <p className='view-fieldpdf'><strong>Event Name:</strong> {sport.event_name}</p>
+        <p className='view-fieldpdf'><strong>Award:</strong> {sport.award}</p>
     </div>
 ))}
             {!sports &&<h3 className='nodatamsg'>No sports details found</h3>}
             {exams && (
     <div className='view-form1'>
         <h2>Exams Attended</h2>
-        <p className='view-field'><strong>GATE Score:</strong> {exams.GATE_score}</p>
-        <p className='view-field'><strong>GRE Score:</strong> {exams.GRE_score}</p>
-        <p className='view-field'><strong>TOEFL Score:</strong> {exams.TOEFL_score}</p>
-        <p className='view-field'><strong>IELTS Score:</strong> {exams.IELTS_score}</p>
-        <p className='view-field'><strong>UPSC Score:</strong> {exams.UPSC_score}</p>
-        <p className='view-field'><strong>NET Score:</strong> {exams.NET_score}</p>
+        <p className='view-fieldpdf'><strong>GATE Score:</strong> {exams.GATE_score}</p>
+        <p className='view-fieldpdf'><strong>GRE Score:</strong> {exams.GRE_score}</p>
+        <p className='view-fieldpdf'><strong>TOEFL Score:</strong> {exams.TOEFL_score}</p>
+        <p className='view-fieldpdf'><strong>IELTS Score:</strong> {exams.IELTS_score}</p>
+        <p className='view-fieldpdf'><strong>UPSC Score:</strong> {exams.UPSC_score}</p>
+        <p className='view-fieldpdf'><strong>NET Score:</strong> {exams.NET_score}</p>
     </div>
 )}
             {!exams &&<h3 className='nodatamsg'>No exam details found</h3>}
 
              
        {papers && papers.map((paper, index) => (
-        <div className='view-form1' key={index}>
+        <div className='view-formpdf' key={index}>
             <h2>Papers Presented {index + 1}</h2>
-            <p className='view-field'><strong>Title:</strong> {paper.title}</p>
-            <p className='view-field'><strong>Journal:</strong> {paper.journal}</p>
-            <p className='view-field'><strong>Date:</strong> {paper.date_year}</p>
-            <p className='view-field'><strong>DOI link:</strong> {paper.DOI_link}</p>
+            <p className='view-fieldpdf'><strong>Title:</strong> {paper.title}</p>
+            <p className='view-fieldpdf'><strong>Journal:</strong> {paper.journal}</p>
+            <p className='view-fieldpdf'><strong>Date:</strong> {paper.date_year}</p>
+            <p className='view-fieldpdf'><strong>DOI link:</strong> {paper.DOI_link}</p>
       
         </div>
     ))}
@@ -364,11 +366,11 @@ function Data(){
             {events && events.map((event, index) => (
     <div className='view-form1' key={index}>
         <h2>Events Details {index + 1}</h2>
-        <p className='view-field'><strong>Event Name:</strong> {event.event_name}</p>
-        <p className='view-field'><strong>Institution Name:</strong> {event.institution}</p>
-        <p className='view-field'><strong>Role:</strong> {event.role}</p>
-        <p className='view-field'><strong>Date:</strong> {event.date}</p>
-        <p className='view-field'><strong>Awards:</strong> {event.awards}</p>
+        <p className='view-fieldpdf'><strong>Event Name:</strong> {event.event_name}</p>
+        <p className='view-fieldpdf'><strong>Institution Name:</strong> {event.institution}</p>
+        <p className='view-fieldpdf'><strong>Role:</strong> {event.role}</p>
+        <p className='view-fieldpdf'><strong>Date:</strong> {event.date}</p>
+        <p className='view-fieldpdf'><strong>Awards:</strong> {event.awards}</p>
   
     </div>
 ))}

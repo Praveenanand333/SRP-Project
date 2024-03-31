@@ -653,6 +653,49 @@ app.get('/unapprove/:rollNumber/:sem', (req, res) => {
   });
 });
 
+app.get('/getsubjects/:semester',(req,res)=>{
+  const semester = req.params.semester;
+  const query = `SELECT * FROM subjects WHERE semester =?`;
+  db.query(query, [semester], (error, results) => {
+    if (error) {
+      console.log('Error executing MySQL query: ' + error.stack);
+    }
+    res.json(results);
+  });
+} )
+
+
+app.post('/addmarks/:rollNumber/:subjectID/:sem', (req, res) => {
+  const rollNumber = req.params.rollNumber;
+  const subjectID = req.params.subjectID;
+  const newMarks = req.body.marks;
+  const sem=req.params.sem;
+  let newGrade;
+  if (newMarks >= 90) {
+    newGrade = 'O';
+  } else if (newMarks >= 80) {
+    newGrade = 'A+';
+  } else if (newMarks >= 70) {
+    newGrade = 'A';
+  } else if (newMarks >= 60) {
+    newGrade = 'B+';
+  } else if (newMarks >= 50) {
+    newGrade = 'B';
+  } else {
+    newGrade = 'C';
+  }
+  const query = `INSERT INTO marks (RollNumber, SubjectID, MarksObtained, Grade,semester) VALUES (?, ?, ?, ?,?)`;
+  db.query(query, [rollNumber, subjectID, newMarks, newGrade,sem], (error, results) => {
+    if (error) {
+      console.error("Error adding marks:", error);
+      res.status(500).json({ error: "An error occurred while adding marks" });
+    } else {
+      console.log("Marks added successfully");
+      res.status(200).json({ message: "Marks added successfully" });
+    }
+  });
+});
+
 
 app.get('/logout', (req, res) => {
   const username = req.session.username;

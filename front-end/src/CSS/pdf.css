@@ -1,0 +1,169 @@
+/* General Styles */
+.center {
+    text-align: center;
+  }
+  
+  /* Personal Details */
+  .persoanl-details {
+    margin-bottom: 20px;
+  }
+  
+  .img-containerpdf {
+    margin-bottom: 20px;
+  }
+  
+  .prof-picpdf {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+  .view-formpdf {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+  }
+  
+  .view-fieldpdf {
+    margin-bottom: 10px;
+  }
+  
+  /* Academic Details */
+  .Academic-details {
+    margin-bottom: 20px;
+  }
+  
+  .basic-detail {
+    margin-bottom: 20px;
+  }
+  
+  .marks-tablepdf {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .marks-tablepdf th,
+  .marks-tablepdf td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .gpa-showpdf {
+    margin-top: 20px;
+  }
+  
+  /* Other Details */
+  .other-details {
+    margin-bottom: 20px;
+  }
+  
+  .view-form1 {
+    margin-bottom: 20px;
+  }
+  
+  .nodatamsg {
+    margin-bottom: 20px;
+    color: #f00; /* Red color for error message */
+  }
+  
+  /* Card Style */
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h2 {
+    margin-bottom: 10px;
+  }
+/* Personal Details */
+.view-containerpdf {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .view-headingpdf {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Academic Details */
+  .marks-tablepdf th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .marks-tablepdf th,
+  .marks-tablepdf td {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .gpa-showpdf {
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .gpa-showpdf h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Other Details */
+  .view-formpdf,
+  .view-form1,
+  .view-formpdfpdf {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .view-formpdf h2,
+  .view-form1 h2,
+  .view-formpdfpdf h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .view-fieldpdf {
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .view-containerpdf {
+      padding: 15px;
+    }
+  
+    .marks-tablepdf th,
+    .marks-tablepdf td {
+      padding: 8px;
+    }
+  
+    .gpa-showpdf {
+      padding: 12px;
+    }
+  
+    .view-formpdf,
+    .view-form1,
+    .view-formpdfpdf {
+      padding: 15px;
+    }
+  
+    .view-formpdf h2,
+    .view-form1 h2,
+    .view-formpdfpdf h2 {
+      font-size: 18px;
+    }
+  }
+    

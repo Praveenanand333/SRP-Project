@@ -7,9 +7,12 @@ function EditStudentAcademic() {
     const [basicacademic, setBasicAcademic] = useState(null);
     const [marks, setMarks] = useState(null);
     const [sem, setSem] = useState(null);
+    const [newsem, setNewSem] = useState(null);
     const [tenthMarks, setTenthMarks] = useState('');
     const [higherSecondaryMarks, setHigherSecondaryMarks] = useState('');
     const [currentSemester, setCurrentSemester] = useState('');
+    const [newSemesterSubjects, setNewSemesterSubjects] = useState([]);
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -22,8 +25,56 @@ function EditStudentAcademic() {
         } else if (name === 'currentSemester') {
             setCurrentSemester(value);
         }
+        else if(name=='newsem'){
+            setNewSem(value);
+            fetchSubjectsForNewSemester(value);
+        }
     };
-
+    const fetchSubjectsForNewSemester = (semester) => {
+        axios.get(`http://localhost:5000/getsubjects/${semester}`)
+            .then(response => {
+                if (response.data) {
+                    setNewSemesterSubjects(response.data);
+                } else {
+                    setNewSemesterSubjects([]);
+                    alert('No subjects found for the selected semester');
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+    const handleAddMarksForNewSemester = () => {
+        // Iterate through newSemesterSubjects and make API calls to add marks for each subject
+        newSemesterSubjects.forEach(subject => {
+            if (subject.marks < 0 || subject.marks > 100) {
+                alert('Marks should be between 0 and 100');
+                return;
+            }
+            
+            axios.post(`http://localhost:5000/addmarks/${userRef.current}/${subject.SubjectID}/${newsem}`, { marks: subject.marks })
+                .then(response => {
+                    console.log('Marks added successfully for subject:', subject.SubjectID);
+                    // You can optionally fetch marks again for the new semester to update the marks table
+                    axios.get(`http://localhost:5000/getsemestermarks/${userRef.current}/${newsem}`)
+                        .then(response => {
+                            if (response.data) {
+                                setMarks(response.data);
+                            } else {
+                                alert('No marks found for selected semester');
+                            }
+                        })
+                        .catch(err => {
+                            alert(err.message);
+                            console.log(err);
+                        });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        });
+    };
+    
     useEffect(() => {
         axios.get('http://localhost:5000/session')
             .then(response => {
@@ -106,7 +157,17 @@ function EditStudentAcademic() {
             console.log(error);
         });
     };
-
+    const handleMarksChange = (subjectID, newMarks) => {
+        setNewSemesterSubjects(prevSubjects => {
+            return prevSubjects.map(subject => {
+                if (subject.SubjectID === subjectID) {
+                    return { ...subject, marks: newMarks };
+                }
+                return subject;
+            });
+        });
+    };
+    
     return (
         <>
             <Navbarfun />
@@ -185,6 +246,59 @@ function EditStudentAcademic() {
                     </tbody>
                 </table>
             </div>}
+            <div>
+                        <label htmlFor="newsemSelect">Select New Semester:</label>
+                        <select
+                            id="newsemSelect"
+                            name="newsem"
+                            value={newsem || ''}
+                            onChange={handleInputChange}
+                        >
+                            <option value="">Select Semester</option>
+                            {[...Array(8).keys()].map((num) => (
+                                <option key={num + 1} value={num + 1}>{num + 1}</option>
+                            ))}
+                        </select>
+                        <p>New Semester: {newsem}</p>
+                    </div>
+          
+            {newsem && (
+                <>
+                   
+
+                    <div>
+                    
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject ID</th>
+                                    <th>Subject Name</th>
+                                    <th>Marks Obtained</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {newSemesterSubjects.map(subject => (
+                                    <tr key={subject.SubjectID}>
+                                        <td>{subject.SubjectID}</td>
+                                        <td>{subject.SubjectName}</td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                value={subject.marks || ''}
+                                                onChange={(e) => {
+                                                    handleMarksChange(subject.SubjectID, e.target.value)
+                                                }}
+                                            />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button className='add-btn' onClick={handleAddMarksForNewSemester}>Submit Marks for New Semester</button>
+                </>
+            )}
         </>
     );
 }
