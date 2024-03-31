@@ -31,7 +31,9 @@ function Navbarfun() {
     };
 
     // Determine the base path for the current user
-    const basePath = location.pathname.startsWith('/teacher') ? '/teacher' : '/student';
+    const basePath = location.pathname.startsWith('/teacher') ? '/teacher' : 
+    location.pathname.startsWith('/student') ? '/student' : 
+    location.pathname.startsWith('/hod') ? '/hod' : null;
 
     return (
         <div>

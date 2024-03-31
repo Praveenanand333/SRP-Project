@@ -18,6 +18,10 @@ import Staffviewacademic from './teacher/view/staffviewacademic';
 import Staffviewother from './teacher/view/staffviewother';
 import Teacheranalytics from './teacher/analytics/teacheranalytics';
 import Data from './PDF/Data';
+import Hodviewpersonal from './hod/hodviewpersonal';
+import Hodviewacademic from './hod/hodviewacademic';
+import Hodviewother from './hod/hodviewother';
+import Hodanalytics from './hod/hodanalytics';
 function App() {
   return (
     <BrowserRouter>
@@ -40,6 +44,10 @@ function App() {
         <Route path="/teacher/view/otherdata" element={<Staffviewother />} />
         <Route path="/teacher/analytics" element={<Teacheranalytics/>} />
         <Route path="/pdf" element={<Data/>} />
+        <Route path='/hod/view/personaldata' element={<Hodviewpersonal />} />
+        <Route path='/hod/view/academicdata' element={<Hodviewacademic />} />
+        <Route path='/hod/view/otherdata' element={<Hodviewother />} />
+        <Route path='/hod/analytics' element={<Hodanalytics/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
