@@ -9,6 +9,7 @@ function EditStudentAcademic() {
     const [sem, setSem] = useState(null);
     const [tenthMarks, setTenthMarks] = useState('');
     const [higherSecondaryMarks, setHigherSecondaryMarks] = useState('');
+    const [currentSemester, setCurrentSemester] = useState('');
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -18,6 +19,8 @@ function EditStudentAcademic() {
             setTenthMarks(value);
         } else if (name === 'higherSecondaryMarks') {
             setHigherSecondaryMarks(value);
+        } else if (name === 'currentSemester') {
+            setCurrentSemester(value);
         }
     };
 
@@ -32,6 +35,7 @@ function EditStudentAcademic() {
                             setBasicAcademic(response.data);
                             setTenthMarks(response.data.TenthMarks);
                             setHigherSecondaryMarks(response.data.HigherSecondaryMarks);
+                            setCurrentSemester(response.data.CurrentSemester);
                         } else {
                             alert('No academic data found');
                         }
@@ -86,14 +90,16 @@ function EditStudentAcademic() {
         // Make API call to edit basic academic details
         axios.put(`http://localhost:5000/editbasicacademic/${userRef.current}`, {
             TenthMarks: tenthMarks,
-            HigherSecondaryMarks: higherSecondaryMarks
+            HigherSecondaryMarks: higherSecondaryMarks,
+            CurrentSemester: currentSemester
         })
         .then(response => {
             console.log('Basic academic details edited successfully');
             setBasicAcademic({
                 ...basicacademic,
                 TenthMarks: tenthMarks,
-                HigherSecondaryMarks: higherSecondaryMarks
+                HigherSecondaryMarks: higherSecondaryMarks,
+                CurrentSemester: currentSemester
             });
         })
         .catch(error => {
@@ -106,7 +112,14 @@ function EditStudentAcademic() {
             <Navbarfun />
    
             {basicacademic && <div className='basic-detail'>
-                <p>Current Semester : {basicacademic.CurrentSemester}</p>
+                <p>Current Semester : 
+                    <input
+                        type="text"
+                        name="currentSemester"
+                        value={currentSemester}
+                        onChange={handleInputChange}
+                    />
+                </p>
                 <p>Tenth Marks : 
                     <input
                         type="number"
