@@ -5,6 +5,7 @@ import PDFData from '../PDF/PDFGenerator';
 import '../CSS/view.css'
 function Student() {
     const [username, setUsername] = useState('');
+    const [name, setName] = useState(null);
     axios.defaults.withCredentials = true; 
     useEffect(() => {
         const fetchData = async () => {
@@ -16,6 +17,16 @@ function Student() {
                 console.log(data);
                 if (data.username) {
                     setUsername(data.username);
+                    axios.get(`http://localhost:5000/getname/${data.username}`)
+                    .then(response => {
+                        console.log('name:',response.data.name);
+                        setName(response.data.name);
+                    })
+                    .catch(error => {
+                        console.log('Error:', error);
+                        alert('Error fetching username');
+                        
+                    });
                     console.log('username set');
                 } else {
                    
@@ -35,8 +46,8 @@ function Student() {
     return (
         <>
        <Navbarfun/>
-            <h1>Student</h1>
-            <p>Welcome, {username}</p>
+           
+            <h3>Welcome, {name}</h3>
             <PDFData/>
 
 

@@ -696,7 +696,15 @@ app.post('/addmarks/:rollNumber/:subjectID/:sem', (req, res) => {
   });
 });
 
-
+app.get('/getname/:rollnumber', (req, res) => {
+  const rollNumber = req.params.rollnumber;
+  const query = `SELECT concat(firstname,' ',lastname) as name FROM students WHERE RollNumber =?`;
+  db.query(query, [rollNumber], (error, results) => {
+    if (error) throw error;
+    
+    res.json(results[0]);
+  });
+})
 app.get('/logout', (req, res) => {
   const username = req.session.username;
     req.session.destroy((err) => {
