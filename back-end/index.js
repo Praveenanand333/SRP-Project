@@ -718,7 +718,9 @@ app.get('/logout', (req, res) => {
 
 });
 
-
+app.get('/',(req,res)=>{
+  res.send('success');
+})
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
